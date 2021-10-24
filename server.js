@@ -31,15 +31,16 @@ app.get('/api', (req, res) => {
 
 app.get('/api/:date', (req, res) => {
   const param = req.params.date
-  const date = new Date(param /)
   
-  console.log(date)
+  const date = new Date(param)
   
-  if (date == 'Invalid Date') {
-    res.json({ error: date.toString() })
-  } else {
-    res.json({ unix: date.getTime(), utc: date.toUTCString() })
-  }
+  console.log(parseInt(param), param, date)
+  
+  // if (date == 'Invalid Date') {
+  //   res.json({ error: date.toString() })
+  // } else {
+  //   res.json({ unix: date.getTime(), utc: date.toUTCString() })
+  // }
 })
 
 // listen for requests :)

@@ -24,10 +24,14 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get('/api', (req, res) => {
+  const date = new Date()
+  res.json({ unix: date.getTime(), utc: date.toUTCString() })
+})
+
 app.get('/api/:date', (req, res) => {
   const param = req.params.date
-  
-  const date = new Date(param)
+  const date = new Date(param /)
   
   console.log(date)
   

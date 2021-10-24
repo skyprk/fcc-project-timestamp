@@ -30,14 +30,18 @@ app.get('/api', (req, res) => {
 })
 
 app.get('/api/:date', (req, res) => {
-  let param = req.params.date
+  const param = req.params.date
   
-  const date = new Date(parseInt(param))
-  
-  console.log(param, date)
-  
+  const date = new Date(param)
+    
   if (date == 'Invalid Date') {
-    res.json({ error: date.toString() })
+    const unixBasedDate = new Date(parseInt(param))
+    
+    if (unixBasedDate == 'Invalid Date') {
+      res.json({ error: unixBasedDate.toString() })  
+    } else {
+      res.json({ unix: unixBasedDate.getTime(), utc: unixBasedDate.toUTCString() })  
+    }
   } else {
     res.json({ unix: date.getTime(), utc: date.toUTCString() })
   }

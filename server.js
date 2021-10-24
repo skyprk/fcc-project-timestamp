@@ -30,17 +30,19 @@ app.get('/api', (req, res) => {
 })
 
 app.get('/api/:date', (req, res) => {
-  const param = req.params.date
+  let param = req.params.date
   
-  const date = new Date(param)
+  const date = (param % 1000 == 0) ? new Date(param/1000) : new Date(param)
   
-  console.log(parseInt(param), param, date)
+  // const date = new Date(param / 1000)
   
-  // if (date == 'Invalid Date') {
-  //   res.json({ error: date.toString() })
-  // } else {
-  //   res.json({ unix: date.getTime(), utc: date.toUTCString() })
-  // }
+  console.log(param, date)
+  
+  if (date == 'Invalid Date') {
+    res.json({ error: date.toString() })
+  } else {
+    res.json({ unix: date.getTime(), utc: date.toUTCString() })
+  }
 })
 
 // listen for requests :)

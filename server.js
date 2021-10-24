@@ -27,14 +27,13 @@ app.get("/api/hello", function (req, res) {
 app.get('/api/:date', (req, res) => {
   const param = req.params.date
   
-  const date = new Date(param).toString()
+  const date = new Date(param)
   
-  if (date === 'Invalid Date') {
-    console.log('error')
+  if (date == 'Invalid Date') {
+    res.json({ error: date.toString() })
   } else {
-    console.log('date found')
+    res.json({ date: date.toUTCString() })
   }
-  // res.json({date: date})
 })
 
 

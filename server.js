@@ -32,9 +32,7 @@ app.get('/api', (req, res) => {
 app.get('/api/:date', (req, res) => {
   let param = req.params.date
   
-  const date = (param % 1000 == 0) ? new Date(param/1000) : new Date(param)
-  
-  // const date = new Date(param / 1000)
+  const date = new Date(parseInt(param))
   
   console.log(param, date)
   

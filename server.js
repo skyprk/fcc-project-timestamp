@@ -29,14 +29,14 @@ app.get('/api/:date', (req, res) => {
   
   const date = new Date(param)
   
+  console.log(date)
+  
   if (date == 'Invalid Date') {
     res.json({ error: date.toString() })
   } else {
-    res.json({ date: date.toUTCString() })
+    res.json({ unix: date.getTime(), utc: date.toUTCString() })
   }
 })
-
-
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
